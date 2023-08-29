@@ -14,6 +14,7 @@ const baseUrl = "http://localhost:3000/ramens"
 
 const menu = document.getElementById("ramen-menu")
 const detail = document.getElementById("ramen-detail")
+const form = document.getElementById("new-ramen")
 
 //First and Second Deliverables
 fetch(baseUrl)
@@ -40,6 +41,21 @@ function renderRamen(ramen) {
     menu.append(img)
 }
 
+form.addEventListener("submit", e => {
+    e.preventDefault()
+    // console.log(e.target.name.value) same as below and below is clearer
+    const newRamen = {
+        // id: "",
+        name: form.name.value,
+        restaurant: form.restaurant.value,
+        image: form.image.value,
+        rating: form.rating.value,
+        comment: form["new-comment"].value,
+      }
+    // console.log(newRamen)
+    renderRamen(newRamen)
+    form.reset()
+})
 
 
 /*advanced deliverables
