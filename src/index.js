@@ -15,12 +15,14 @@ const baseUrl = "http://localhost:3000/ramens"
 const menu = document.getElementById("ramen-menu")
 const detail = document.getElementById("ramen-detail")
 const form = document.getElementById("new-ramen")
+const menuArray = []
 
 //First and Second Deliverables
 fetch(baseUrl)
   .then(resp => resp.json())
   .then(menu => {
     renderMainImage(menu[0])
+    deleteMainRamen(menu)
     menu.forEach(ramen => renderRamen(ramen))
 }) //returns and array of objects. each object is a meanu item
 
@@ -72,17 +74,35 @@ function renderMainImage(ramen) {
     detail.querySelector("h3").textContent = ramen.restaurant
     document.getElementById("rating-display").textContent = ramen.rating
     document.getElementById("comment-display").textContent = ramen.comment
+    featuredRamenId = ramen.id
 }
 
 //Second Deliverable
 //html added at line 37
-
 const editForm = document.getElementById("edit-ramen")
 
 editForm.addEventListener("submit", e => {
     e.preventDefault()
-    console.log(editForm.rating.value)
-    console.log(editForm["new-comment"].value)
     document.getElementById("rating-display").textContent = editForm.rating.value
     document.getElementById("comment-display").textContent = editForm["new-comment"].value
 })
+
+//Third Deliverable
+const deleteForm = document.getElementById("delete-ramen")
+
+let featuredRamenId = 0
+
+function deleteMainRamen(menu) {
+    console.log("menu", menu)
+    deleteForm.addEventListener("submit", e => {
+        e.preventDefault()
+        const featuredRamen = document.getElementById(featuredRamenId)
+        console.log("featured ramen", featuredRamen)
+        console.log("featured ramen id", featuredRamenId)
+        featuredRamen.remove()
+        menu.splice(featuredRamenId -1, 1)
+        console.log("new menu", menu)
+        console.log("new first item", menu[0])
+        renderMainImage(menu[0])
+    })
+}
