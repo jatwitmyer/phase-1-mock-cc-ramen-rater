@@ -15,11 +15,16 @@ const baseUrl = "http://localhost:3000/ramens"
 const menu = document.getElementById("ramen-menu")
 const detail = document.getElementById("ramen-detail")
 const form = document.getElementById("new-ramen")
+const firstRamen = []
 
 //First and Second Deliverables
 fetch(baseUrl)
   .then(resp => resp.json())
-  .then(menu => menu.forEach(ramen => renderRamen(ramen))) //returns and array of objects. each object is a meanu item
+  .then(menu => {
+    firstRamen.push(menu[0])
+    renderMainImage(menu[0])
+    menu.forEach(ramen => renderRamen(ramen))
+}) //returns and array of objects. each object is a meanu item
 
 function renderRamen(ramen) {
     //ramen is an object with keys id, name, restaurant, image, rating, and comment
@@ -29,18 +34,11 @@ function renderRamen(ramen) {
     img.title = `${ramen.name} from ${ramen.restaurant}`
     img.id = ramen.id
     // img.addEventListener('click', e => showDetails(e))
-    img.addEventListener('click', e => {
-        // detail.img.src = ramen.image
-        detail.querySelector("img").src = ramen.image
-        detail.querySelector("img").alt = `Picture of ${ramen.name} from ${ramen.restaurant}`
-        detail.querySelector("h2").textContent = ramen.name
-        detail.querySelector("h3").textContent = ramen.restaurant
-        document.getElementById("rating-display").textContent = ramen.rating
-        document.getElementById("comment-display").textContent = ramen.comment
-    })
+    img.addEventListener('click', e => renderMainImage(ramen))
     menu.append(img)
 }
 
+//Third Deliverable
 form.addEventListener("submit", e => {
     e.preventDefault()
     // console.log(e.target.name.value) same as below and below is clearer
@@ -57,7 +55,6 @@ form.addEventListener("submit", e => {
     form.reset()
 })
 
-
 /*advanced deliverables
 
 -See the details for the first ramen as soon as the page loads (without clicking on an 
@@ -68,3 +65,14 @@ file to create the edit form:
 -Delete a ramen (you can add a "delete" button if you'd like, or use an existing element 
 to handle the delete action). The ramen should be removed from the ramen-menu div, and 
 should not be displayed in the ramen-detail div. No need to persist.*/
+
+//First Deliverable
+function renderMainImage(ramen) {
+    detail.querySelector("img").src = ramen.image
+    detail.querySelector("img").alt = `Picture of ${ramen.name} from ${ramen.restaurant}`
+    detail.querySelector("h2").textContent = ramen.name
+    detail.querySelector("h3").textContent = ramen.restaurant
+    document.getElementById("rating-display").textContent = ramen.rating
+    document.getElementById("comment-display").textContent = ramen.comment
+}
+
