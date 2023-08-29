@@ -15,13 +15,11 @@ const baseUrl = "http://localhost:3000/ramens"
 const menu = document.getElementById("ramen-menu")
 const detail = document.getElementById("ramen-detail")
 const form = document.getElementById("new-ramen")
-const firstRamen = []
 
 //First and Second Deliverables
 fetch(baseUrl)
   .then(resp => resp.json())
   .then(menu => {
-    firstRamen.push(menu[0])
     renderMainImage(menu[0])
     menu.forEach(ramen => renderRamen(ramen))
 }) //returns and array of objects. each object is a meanu item
@@ -76,3 +74,15 @@ function renderMainImage(ramen) {
     document.getElementById("comment-display").textContent = ramen.comment
 }
 
+//Second Deliverable
+//html added at line 37
+
+const editForm = document.getElementById("edit-ramen")
+
+editForm.addEventListener("submit", e => {
+    e.preventDefault()
+    console.log(editForm.rating.value)
+    console.log(editForm["new-comment"].value)
+    document.getElementById("rating-display").textContent = editForm.rating.value
+    document.getElementById("comment-display").textContent = editForm["new-comment"].value
+})
