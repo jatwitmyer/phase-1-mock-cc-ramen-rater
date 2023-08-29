@@ -23,8 +23,14 @@ fetch(baseUrl)
   .then(menu => {
     renderMainImage(menu[0])
     deleteMainRamen(menu)
-    menu.forEach(ramen => renderRamen(ramen))
+    menu.forEach(ramen => {
+        // const menuArray = []
+        // menuArray.push(ramen)
+        // console.log("menu array inside fetch", menuArray.length)
+        renderRamen(ramen)})
 }) //returns and array of objects. each object is a meanu item
+
+// console.log("menu array", menuArray.length)
 
 function renderRamen(ramen) {
     //ramen is an object with keys id, name, restaurant, image, rating, and comment
@@ -68,13 +74,19 @@ should not be displayed in the ramen-detail div. No need to persist.*/
 
 //First Deliverable
 function renderMainImage(ramen) {
-    detail.querySelector("img").src = ramen.image
-    detail.querySelector("img").alt = `Picture of ${ramen.name} from ${ramen.restaurant}`
-    detail.querySelector("h2").textContent = ramen.name
-    detail.querySelector("h3").textContent = ramen.restaurant
-    document.getElementById("rating-display").textContent = ramen.rating
-    document.getElementById("comment-display").textContent = ramen.comment
-    featuredRamenId = ramen.id
+    console.log(ramen)
+    if (ramen === undefined) {
+        console.log("empty")
+    } else {
+        detail.querySelector("img").src = ramen.image
+        detail.querySelector("img").alt = `Picture of ${ramen.name} from ${ramen.restaurant}`
+        detail.querySelector("h2").textContent = ramen.name
+        detail.querySelector("h3").textContent = ramen.restaurant
+        document.getElementById("rating-display").textContent = ramen.rating
+        document.getElementById("comment-display").textContent = ramen.comment
+        featuredRamenId = ramen.id
+    }
+    
 }
 
 //Second Deliverable
@@ -100,9 +112,13 @@ function deleteMainRamen(menu) {
         console.log("featured ramen", featuredRamen)
         console.log("featured ramen id", featuredRamenId)
         featuredRamen.remove()
-        menu.splice(featuredRamenId -1, 1)
+        menu = menu.filter(ramen => {
+            return ramen.id !== featuredRamenId
+        })
+        // menu.splice(featuredRamenId -1, 1)
         console.log("new menu", menu)
         console.log("new first item", menu[0])
         renderMainImage(menu[0])
-    })
-}
+        console.log(document.getElementById("ramen-menu"))
+    }
+)}
