@@ -23,6 +23,7 @@ fetch(baseUrl)
   .then(menu => {
     renderMainImage(menu[0])
     deleteMainRamen(menu)
+    makeNewRamen(menu)
     menu.forEach(ramen => {
         // const menuArray = []
         // menuArray.push(ramen)
@@ -41,25 +42,31 @@ function renderRamen(ramen) {
     img.id = ramen.id
     // img.addEventListener('click', e => showDetails(e))
     img.addEventListener('click', e => renderMainImage(ramen))
+    renderMainImage(ramen)
     menu.append(img)
 }
 
 //Third Deliverable
-form.addEventListener("submit", e => {
-    e.preventDefault()
-    // console.log(e.target.name.value) same as below and below is clearer
-    const newRamen = {
-        // id: "",
-        name: form.name.value,
-        restaurant: form.restaurant.value,
-        image: form.image.value,
-        rating: form.rating.value,
-        comment: form["new-comment"].value,
-      }
-    // console.log(newRamen)
-    renderRamen(newRamen)
-    form.reset()
-})
+function makeNewRamen(menu) {
+    form.addEventListener("submit", e => {
+        e.preventDefault()
+        // console.log(e.target.name.value) same as below and below is clearer
+        const newRamen = {
+            // id: "",
+            name: form.name.value,
+            restaurant: form.restaurant.value,
+            image: form.image.value,
+            rating: form.rating.value,
+            comment: form["new-comment"].value,
+          }
+        // console.log(newRamen)
+        menu.push(newRamen)
+        renderRamen(newRamen)
+        // console.log("menu", menu)
+        form.reset()
+    })
+}
+
 
 /*advanced deliverables
 
@@ -73,11 +80,17 @@ to handle the delete action). The ramen should be removed from the ramen-menu di
 should not be displayed in the ramen-detail div. No need to persist.*/
 
 //First Deliverable
+const menuContainer = document.getElementById("display-toggle")
+const menuContainer2 = document.getElementById("display-toggle2")
+
 function renderMainImage(ramen) {
-    console.log(ramen)
+    // console.log(ramen)
     if (ramen === undefined) {
         console.log("empty")
+        menuContainer.style.display = "none"
+        menuContainer2.style.display = "none"
     } else {
+        menuContainer.style.display = "block"
         detail.querySelector("img").src = ramen.image
         detail.querySelector("img").alt = `Picture of ${ramen.name} from ${ramen.restaurant}`
         detail.querySelector("h2").textContent = ramen.name
@@ -86,7 +99,6 @@ function renderMainImage(ramen) {
         document.getElementById("comment-display").textContent = ramen.comment
         featuredRamenId = ramen.id
     }
-    
 }
 
 //Second Deliverable
@@ -105,7 +117,7 @@ const deleteForm = document.getElementById("delete-ramen")
 let featuredRamenId = 0
 
 function deleteMainRamen(menu) {
-    console.log("menu", menu)
+    // console.log("menu", menu)
     deleteForm.addEventListener("submit", e => {
         e.preventDefault()
         const featuredRamen = document.getElementById(featuredRamenId)
@@ -115,10 +127,10 @@ function deleteMainRamen(menu) {
         menu = menu.filter(ramen => {
             return ramen.id !== featuredRamenId
         })
-        // menu.splice(featuredRamenId -1, 1)
         console.log("new menu", menu)
         console.log("new first item", menu[0])
         renderMainImage(menu[0])
         console.log(document.getElementById("ramen-menu"))
     }
 )}
+
