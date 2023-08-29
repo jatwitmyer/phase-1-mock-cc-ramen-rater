@@ -15,7 +15,7 @@ const baseUrl = "http://localhost:3000/ramens"
 const menu = document.getElementById("ramen-menu")
 const detail = document.getElementById("ramen-detail")
 
-//First Deliverable
+//First and Second Deliverables
 fetch(baseUrl)
   .then(resp => resp.json())
   .then(menu => menu.forEach(ramen => renderRamen(ramen))) //returns and array of objects. each object is a meanu item
@@ -26,6 +26,17 @@ function renderRamen(ramen) {
     img.src = ramen.image //might not work
     img.alt = `Picture of ${ramen.name} from ${ramen.restaurant}.`
     img.title = `${ramen.name} from ${ramen.restaurant}`
+    img.id = ramen.id
+    // img.addEventListener('click', e => showDetails(e))
+    img.addEventListener('click', e => {
+        // detail.img.src = ramen.image
+        detail.querySelector("img").src = ramen.image
+        detail.querySelector("img").alt = `Picture of ${ramen.name} from ${ramen.restaurant}`
+        detail.querySelector("h2").textContent = ramen.name
+        detail.querySelector("h3").textContent = ramen.restaurant
+        document.getElementById("rating-display").textContent = ramen.rating
+        document.getElementById("comment-display").textContent = ramen.comment
+    })
     menu.append(img)
 }
 
