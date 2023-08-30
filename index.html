@@ -5,7 +5,8 @@
   <meta charset="utf-8" />
   <title>Ramen Rater</title>
   <link rel="stylesheet" type="text/css" href="styles.css" />
-  <script defer type="text/javascript" src="./src/index.js"></script>
+  <!-- <script defer type="text/javascript" src="./src/index.js"></script> -->
+  <script defer type="text/javascript" src="./src/index2.js"></script>
 </head>
 
 <body>
@@ -20,21 +21,24 @@
 
   <!--toggle div-->
   <div id = "display-toggle", style="display: block">
-      <!-- Ramen Details -->
-    <div id="ramen-detail">
+      <!-- Featured Ramen Image -->
+    <div id="featured-ramen-image">
       <img class="detail-image" src="./assets/image-placeholder.jpg" alt="Insert Name Here" />
       <h2 class="name">Insert Name Here</h2>
       <h3 class="restaurant">Insert Restaurant Here</h3>
     </div>
-
-    <h3>Rating:</h3>
-    <p>
-      <span id='rating-display'>Insert rating here</span> / 10
-    </p>
-    <h3>Comment:</h3>
-    <p id='comment-display'>
-      Insert comment here
-    </p>
+      <!-- Featured Ramen Reviews -->
+    <div id ="featured-ramen-reviews">
+      <h3>Rating:</h3>
+      <p>
+        <span id='rating-display'>Insert rating here</span> / 10
+      </p>
+      <h3>Comment:</h3>
+      <p id='comment-display'>
+        Insert comment here
+      </p>
+    </div>
+    
   </div>
 
   <div id = "display-toggle2", style="display: block">

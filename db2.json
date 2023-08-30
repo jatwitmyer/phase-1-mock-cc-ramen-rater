@@ -1,0 +1,89 @@
+{
+    "ramens": [
+      {
+        "id": 1,
+        "name": "Shoyu Ramen",
+        "restaurant": "Nonono",
+        "image": "./assets/ramen/shoyu.jpg",
+        "rating": 7,
+        "comment": [
+            {
+              "name" : "Charlotte",
+              "text" : "Delish. Can't go wrong with a classic!"
+            },
+            {
+              "name" : "Jennifer",
+              "text" : "This place rocks!"
+            }
+          ]
+        },
+      {
+        "id": 2,
+        "name": "Naruto Ramen",
+        "restaurant": "Naruto",
+        "image": "./assets/ramen/naruto.jpg",
+        "rating": 10,
+        "comment": [
+          {
+            "name" : "Cooper",
+            "text" : "This place is the bee's knees!"
+          },
+          {
+            "name" : "Jess",
+            "text" : "This place was awesome!"
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Nirvana Shiromaru",
+        "restaurant": "Ippudo",
+        "image": "./assets/ramen/nirvana.jpg",
+        "rating": "7",
+        "comment": [
+          {
+            "name" : "Joe",
+            "text" : "What a banger!"
+          },
+          {
+            "name" : "Jeff",
+            "text" : "Love it!"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Gyukotsu Ramen",
+        "restaurant": "Za-Ya Ramen",
+        "image": "./assets/ramen/gyukotsu.jpg",
+        "rating": 8,
+        "comment": [
+          {
+            "name" : "Sarah",
+            "text" : "Mouth watering goodness!"
+          },
+          {
+            "name" : "Lawrence",
+            "text" : "Best ramen ever!"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Kojiro Red Ramen",
+        "restaurant": "Ramen-Ya",
+        "image": "./assets/ramen/kojiro.jpg",
+        "rating": 6,
+        "comment": [
+          {
+            "name" : "Carter",
+            "text" : "Would def come back!"
+          },
+          {
+            "name" : "Grace",
+            "text" : "One of my local faves!"
+          }
+        ]
+      }
+    ]
+  }

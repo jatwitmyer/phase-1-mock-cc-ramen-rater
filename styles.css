@@ -39,7 +39,7 @@ header {
   margin-right: 0;
 }
 
-#ramen-detail {
+#featured-ramen-image {
   position: relative;
 }
 
@@ -101,3 +101,11 @@ form h4 {
   background-color: black;
 }
 
+.individualComment {
+  margin-top: .5rem
+}
+
+.commenter {
+  font-weight: bold;
+  font-style: italic;
+}
